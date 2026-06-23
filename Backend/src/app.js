@@ -13,6 +13,10 @@ app.use(express.urlencoded({extended:true , limit:'16kb'}))
 app.use(express.json({limit:'16kb'}))
 app.use(cookieParser())
 
+app.use("/api/v1/check", (req, res) => {
+    res.json({ success: true, message: "Backend is running" })
+})
+
 import notificationRouter from './routes/notification.router.js'
 app.use("/api/v1/notify",notificationRouter)
 
