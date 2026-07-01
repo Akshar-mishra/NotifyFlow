@@ -15,7 +15,7 @@ export const replayDeadJob = asyncHandler(async (req, res) => {
 
     const payload=deadltr.originalPayload
 
-    await addNotificationToQueue(payload)
+    const newJob = await addNotificationToQueue(payload)
 
     await Notification.findByIdAndUpdate(payload.notificationId, {
         status: 'queued',
