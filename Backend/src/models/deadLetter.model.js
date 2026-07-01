@@ -19,6 +19,10 @@ const deadLetterSchema = new Schema(
         failureReason: {
             type: String,
             required: true
+        },
+        exhaustedAt: { 
+            type: Date,
+            default: Date.now 
         }
     },
     {timestamps: true}

@@ -8,7 +8,7 @@ export const authValidator = asyncHandler(async (req, res, next) => {
     const rawApiKey = req.headers['x-api-key']
 
     if (!rawApiKey) {
-        throw new ApiError(401, "Unauthorized: No API key provided.");
+        throw new ApiErrors(401, "Unauthorized: No API key provided.");
     }
 
     const apiKey = rawApiKey.replace(/['"]/g, '').trim();
