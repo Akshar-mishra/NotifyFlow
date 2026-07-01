@@ -1,13 +1,9 @@
 import {Queue} from 'bullmq'
 import { getRedisInstance } from '../db/redis.js'
 
-const redisOptions = {
-    host: '127.0.0.1',
-    port: 6379,
-    maxRetriesPerRequest: null 
-}
+const connection = getRedisInstance()
 
-export const notificationQueue = new Queue('notification-queue', {connection: redisOptions})
+export const notificationQueue = new Queue('notification-queue', {connection})
 
 export const addNotificationToQueue = async (payload) => {
     const job = await notificationQueue.add('send-email', payload, {

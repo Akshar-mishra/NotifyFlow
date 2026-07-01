@@ -4,14 +4,11 @@ import { Notification } from '../models/notification.model.js'
 import connectDB from '../db/index.js'
 import {sendEmail} from '../services/mailer.service.js'
 import {DeadLetter} from '../models/deadLetter.model.js'
-
+import { getRedisInstance } from '../db/redis.js'
+ 
 connectDB()  
 
-const redisOptions = {
-    host: '127.0.0.1',
-    port: 6379,
-    maxRetriesPerRequest: null
-}  
+const connection = getRedisInstance() 
 
 const notificationWorker = new Worker("notification-queue", async (job) => {
     const { to, subject, body, notificationId } = job.data  
@@ -31,7 +28,7 @@ const notificationWorker = new Worker("notification-queue", async (job) => {
         throw err
     } 
      
-}, { connection: redisOptions })  
+}, { connection})  
 
 
 
