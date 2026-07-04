@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import app from './app.js'
 import { getRedisInstance } from './db/redis.js'
 import connectDB from './db/index.js'
+import './queues/notification.worker.js' 
 
 dotenv.config({
     path:"./.env"
