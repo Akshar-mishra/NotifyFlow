@@ -1,5 +1,5 @@
 # 1. Use the lightweight Alpine OS
-FROM node:18-alpine
+FROM node:20-alpine
 
 # 2. Set the working directory inside the container
 WORKDIR /usr/src/app
